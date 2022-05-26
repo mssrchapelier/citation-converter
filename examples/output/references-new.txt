@@ -1,0 +1,5 @@
+Botha and Blunsom 2013 — Jan A. Botha and Peter Blunsom. Adaptor Grammars for Learning Non-Concatenative Morphology. In Proceedings of the 2013 Conference on Empirical Methods in Natural Language Processing, pages 345–356, 2013.
+Buckwalter 2002 — Tim Buckwalter. Buckwalter Arabic Morphological Analyzer Version 1.0. Linguistic Data Consortium, University of Pennsylvania, Philadelphia, 2002.
+Fissaha and Haller 2003 — Sisay Fissaha and Johann Haller. Amharic verb lexicon in the context of machine translation. In Proceedings of the 10th Conference on Traitement Automatique des Langues Naturelles, vol. 2, pages 183–192, 2003.
+Gasser 2009 — Michael Gasser. Semitic Morphological Analysis and Generation Using Finite State Transducers with Feature Structures. In Proceedings of the 12th Conference of the European Chapter of the ACL, pages 309-317, 2009.
+Mulugeta et al. 2012 — Wondwossen Mulugeta, Michael Gasser, and Baye Yimam. Incremental learning of affix segmentation. In Proceedings of COLING 2012: Technical Papers, pages 1901–1914, 2012.
