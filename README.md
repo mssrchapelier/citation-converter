@@ -43,7 +43,7 @@ Completed!
 IMPORTANT: Please manually edit the citation list: ./citation-list.tsv
 ```
 
-2. Now manually edit `citation-list.tsv` to correct any parsing errors:
+2. Edit `citation-list.tsv` manually to correct any parsing errors:
 
 
 >4`\t`**Argaw and Asker 2007**`\t`Atelach Alemu Argaw and Lars Asker. An Amharic stemmer..., pages 104—110, 2007.
