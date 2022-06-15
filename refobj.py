@@ -15,6 +15,7 @@ limitations under the License.
 """
 
 import re
+from unicode_chars import get_unicode_uppercase, get_unicode_lowercase
 
 # --- classes ---
 
@@ -90,70 +91,84 @@ def extract_intext(non_numbered_ref):
 
 # --- patterns ---
 
-# does not match non-ASCII characters; need to enumerate them explicitly
-# or use PyPi regex
+# Unicode uppercase and lowercase chars
+pLu = get_unicode_uppercase()
+pLl = get_unicode_lowercase()
 
-PATTERN_ONE_AUTHOR = r"""(?x)
-        ^
-        (?:[A-Z][a-z]+[ ])          # name
-        (?:[A-Z][a-z]+[ ])*?        # any other names (0 or more)
-        (?P<surname>[A-Z][a-z]+)    # surname
-        \.
-        (?:.+?\,[ ])                # the rest of the citation until the year
-        (?P<year>\d{4})             # year
-        \.
-        $
-    """
-
-PATTERN_TWO_AUTHORS = r"""(?x)
-        ^
-        # --- author 1 ---
-        (?:[A-Z][a-z]+[ ])          # name
-        (?:[A-Z][a-z]+[ ])*?        # any other names (0 or more)
-        (?P<surname1>[A-Z][a-z]+)   # surname
-        
-        [ ]and[ ]
-        
-        # --- author 2 ---
-        (?:[A-Z][a-z]+[ ])          # name
-        (?:[A-Z][a-z]+[ ])*?        # any other names (0 or more)
-        (?P<surname2>[A-Z][a-z]+)   # surname
-        
-        \.
-        
-        (?:.+?\,[ ])                # the rest of the citation until the year
-        (?P<year>\d{4})             # year
-        \.
-        $
-    """
-
-PATTERN_MULTIPLE_AUTHORS = r"""(?x)
-        ^
-        # --- author 1 ---
-        (?:[A-Z][a-z]+[ ])          # name
-        (?:[A-Z][a-z]+[ ])*?        # any other names (0 or more)
-        (?P<surname>[A-Z][a-z]+)    # surname
-        
-        # --- authors 2 to n-1 ---
+# "Kevin P. Scannell. ..." -> "Kevin P. "
+FIRST_NAMES = fr"""
+    (?:{pLu}{pLl}+[ ])             # name
+    (?:
         (?:
-            ,[ ]
-            (?:[A-Z][a-z]+[ ])+     # names (1 or more)
-            (?:[A-Z][a-z]+)         # surname
-        )+?
-        
-        ,[ ]and[ ]
-        
-        # --- author n ---
-        (?:[A-Z][a-z]+[ ])+     # names (1 or more)
-        (?:[A-Z][a-z]+)         # surname
-        
-        \.
-        
-        (?:.+?\,[ ])        # the rest of the citation until the year
-        (?P<year>\d{4})     # year
-        \.
-        $
-    """
+            (?:{pLu}\.)         # middle name initial
+            |(?:{pLu}{pLl}+)    # any other names
+        )
+        [ ]
+    )*?                         # (0 or more)
+"""
+
+# "Kevin P. Scannell. ..." -> "Scannell"
+SURNAME_UNGROUPED = fr"""
+    {pLu}{pLl}+
+"""
+
+# the citation part that starts after the names
+# "Name A, Name B, and Name C. Article title. In Proceedings of ..., pages 12-34, 2020."
+# --> ". Article title. In ..., 2020."
+REMAINDER = fr"""
+    \.
+    .+
+    ,[ ]
+    (?P<year>\d{{4}})
+    \.
+"""
+
+PATTERN_ONE_AUTHOR = fr"""(?x)
+    ^
+    {FIRST_NAMES}
+    (?P<surname>{SURNAME_UNGROUPED})
+    {REMAINDER}
+    $
+"""
+
+PATTERN_TWO_AUTHORS = fr"""(?x)
+    ^
+    # --- author 1 ---
+    {FIRST_NAMES}
+    (?P<surname1>{SURNAME_UNGROUPED})
+    
+    [ ]and[ ]
+    
+    # --- author 2 ---
+    {FIRST_NAMES}
+    (?P<surname2>{SURNAME_UNGROUPED})
+    
+    {REMAINDER}
+    $
+"""
+
+PATTERN_MULTIPLE_AUTHORS = fr"""(?x)
+    ^
+    # --- author 1 ---
+    {FIRST_NAMES}
+    (?P<surname>{SURNAME_UNGROUPED})
+    
+    # --- authors 2 to n-1 ---
+    (?:
+        ,[ ]
+        {FIRST_NAMES}
+        (?:{SURNAME_UNGROUPED})
+    )+?
+    
+    ,[ ]and[ ]
+    
+    # --- author n ---
+    {FIRST_NAMES}
+    (?:{SURNAME_UNGROUPED})
+    
+    {REMAINDER}
+    $
+"""
 
 PATTERNS = [PATTERN_ONE_AUTHOR, PATTERN_TWO_AUTHORS,
             PATTERN_MULTIPLE_AUTHORS]

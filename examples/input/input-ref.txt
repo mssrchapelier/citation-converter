@@ -1,0 +1,7 @@
+[4] Atelach Alemu Argaw and Lars Asker. An Amharic stemmer: Reducing words to their citation forms. In Proceedings of the Workshop on Computational Approaches to Semitic Languages: Common Issues and Resources – ACL 2007, pages 104—110, 2007.
+[8] Girma Awgichew Demeke and Mesfin Getachew. Manual annotation of Amharic news items with part-of-speech tags and its challenges. In Ethiopian Languages Research Center Working Papers, 2006, 2, pages 1—16.
+[12] Björn Gambäck and Lars Asker. Experiences with developing language processing tools and corpora for Amharic. In: 2010 IST-Africa, pages 1-8, Durban, 2010.
+[13] Michael Gasser. HornMorpho: a system for morphological processing of Amharic, Oromo, and Tigrinya. Paper presented at the Conference on Human Language Technology for Development, Alexandria, Egypt, 2011.
+[14] Andargachew Mekonnen Gezmu, Binyam Ephrem Seyoum, Michael Gasser, and Andreas Nürnberger. Contemporary Amharic corpus: automatically morpho-syntactically tagged Amharic corpus. In Proceedings of the First Workshop on Linguistic Resources for Natural Language Processing, pages 65—70, Santa Fe, New Mexico, USA, 2018.
+[29] Pavel Rychlý and Vít Suchomel. Annotated Amharic Corpora. In: International Conference on Text, Speech, and Dialogue, pages 295-302, 2016.
+[30] Kevin P. Scannell. The Crúbadán project: Corpus building for under-resourced languages. In C. Fairon, H. Naets, A. Kilgarriff, G.-M. de Schryver (Eds.), Building and Exploring Web Corpora: Proceedings of the 3rd Web as Corpus Workshop, volume 4, pages 5–15, 2007.

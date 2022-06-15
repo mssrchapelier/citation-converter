@@ -80,14 +80,13 @@ def convert_citations_in_text(refobjs, *, input_path, output_path):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf8") as fout:
         for line in out_lines:
-            fout.write(line + "\n")
+            fout.write(line)
 
 def main(args):
     print("Reading citation list from: {}".format(args.citation_tsv))
     refobjs = read_citation_list(args.citation_tsv)
-    print(("Converting citations in the text"
-           "from: {} and writing to: {}").format(args.input_text,
-                                                 args.output_text))
+    print(("Converting citations in the text "
+           "from: {}").format(args.input_text))
     convert_citations_in_text(refobjs,
                               input_path=args.input_text,
                               output_path=args.output_text)
